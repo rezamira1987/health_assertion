@@ -1,0 +1,23 @@
+# Example configuration for the network health assertion toolkit
+switches:
+  - name: leaf01
+    host: 10.10.10.11
+    username: admin
+    password: your-password
+    port: 22
+    timeout: 30
+    checks:
+      - type: command_contains
+        command: show system-health
+        expect: Overall system state: OK
+        severity: critical
+        description: System health should report OK
+      - type: command_regex
+        command: show interface status Ethernet0
+        pattern: "Ethernet0\\s+up\\s+up"
+        severity: warning
+        description: Ethernet0 should be up/up
+alerts:
+  stdout: true
+  file: logs/health_alerts.log
+  # slack_webhook: https://hooks.slack.com/services/XXXX/XXXX

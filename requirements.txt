@@ -1,0 +1,4 @@
+paramiko>=3.4
+PyYAML>=6.0
+requests>=2.32
+tenacity>=8.2
